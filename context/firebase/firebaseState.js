@@ -20,31 +20,27 @@ const FirebaseState = props => {
 
     // Función que se ejecuta para traer los productos
     const obtenerProductos = () => {
-        console.log("OBTENER PRODUCTOS");
+        dispatch({
+            type: OBTENER_PRODUCTOS,
+        });
+
+        // Consultar FireBase
+        firebase.db
+            .collection('productos')
+            .where("existencia", "==", true) // Traer sólo los que estén en existencia 
+            .onSnapshot(manejarSnapshot);
+
+        function manejarSnapshot(snapshot) {
+            let platillos = snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            });
+
+            console.log("platillos", platillos);
+        }
     }
-
-    // const obtenerProductos = () => {
-    //     dispatch({
-    //         type: OBTENER_PRODUCTOS,
-    //     });
-
-    //     // Consultar FireBase
-    //     firebase.db
-    //         .collection('productos')
-    //         .where("existencia", "==", true) // Traer sólo los que estén en existencia 
-    //         .onSnapshot(manejarSnapshot);
-
-    //     function manejarSnapshot(snapshot) {
-    //         let platillos = snapshot.docs.map(doc => {
-    //             return {
-    //                 id: doc.id,
-    //                 ...doc.data()
-    //             }
-    //         });
-
-    //         console.log("platillos", platillos);
-    //     }
-    // }
 
     return (
         <FirebaseContext.Provider
@@ -58,7 +54,6 @@ const FirebaseState = props => {
         </FirebaseContext.Provider>
     )
 }
-
 
 export default FirebaseState;
 
