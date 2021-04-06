@@ -10,11 +10,9 @@ export default function Menu() {
     // // Context de Firebase
     const { obtenerProductos } = useContext(FirebaseContext);
 
-    console.log(obtenerProductos());
-
-    // useEffect(() => {
-    //     obtenerProductos();
-    // }, []);
+    useEffect(() => {
+        obtenerProductos();
+    }, []);
 
     return (
         <View>
