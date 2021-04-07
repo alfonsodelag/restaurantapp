@@ -16,6 +16,7 @@ import DetallePlatillo from './views/DetallePlatillo';
 // Importar state de Context
 import FirebaseState from "./context/firebase/firebaseState";
 import PedidoState from "./context/pedidos/pedidosState";
+import BotonResumen from './components/ui/BotonResumen';
 
 const Stack = createStackNavigator();
 
@@ -45,9 +46,10 @@ export default function App() {
               <Stack.Screen
                 name="Menu"
                 component={Menu}
-                options={{
-                  title: "Menu"
-                }}
+              // options={{
+              //   title: "Menu",
+              //   headerRight: props => <BotonResumen />
+              // }}
               />
               <Stack.Screen
                 name="DetallePlatillo"

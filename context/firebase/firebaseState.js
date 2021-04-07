@@ -4,8 +4,10 @@ import React, { useReducer } from 'react';
 import firebase from '../../firebase';
 import FirebaseReducer from './firebaseReducer';
 import FirebaseContext from "./firebaseContext";
+import _ from "lodash";
 
-import { OBTENER_PRODUCTOS } from "../../types";
+
+import { OBTENER_PRODUCTOS_EXITO } from "../../types";
 
 const FirebaseState = props => {
 
@@ -20,10 +22,6 @@ const FirebaseState = props => {
 
     // Función que se ejecuta para traer los productos
     const obtenerProductos = () => {
-        dispatch({
-            type: OBTENER_PRODUCTOS,
-        });
-
         // Consultar FireBase
         firebase.db
             .collection('productos')
@@ -38,7 +36,15 @@ const FirebaseState = props => {
                 }
             });
 
-            console.log("platillos", platillos);
+            // Ordenar por categoria con lodash
+            platillos = _.sortBy(platillos, "categotia");
+            console.log(platillos);
+
+            // Tenemos resultados de la base de datos 
+            dispatch({
+                type: OBTENER_PRODUCTOS_EXITO,
+                payload: platillos  // El payload modifica el state
+            });
         }
     }
 

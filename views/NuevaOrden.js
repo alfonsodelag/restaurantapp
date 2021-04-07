@@ -12,12 +12,12 @@ export default function NuevaOrden() {
         <Container style={globalStyles.contenedor}>
             <View style={[globalStyles.contenido, styles.contenido]}>
                 <Button
-                    style={globalStyles.contendor}
+                    style={globalStyles.boton}
                     rounded
                     block
                     onPress={() => navigation.navigate("Menu")}
                 >
-                    <Text style={globalStyles.botonTexto}>Crear Nueva Orden</Text>
+                    <Text style={[globalStyles.botonTexto]}>Crear Nueva Orden</Text>
                 </Button>
             </View>
         </Container>
