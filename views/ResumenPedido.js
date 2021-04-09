@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Alert, StyleSheet } from 'react-native'
+import { Alert } from 'react-native'
 import {
     Container,
     Content,
@@ -57,7 +57,7 @@ export default function ResumenPedido() {
                             creado: Date.now()
                         }
 
-                        console.log(pedidoObj);
+                        console.log(pedidoObj);  // ! No imprime esto
 
                         try {
                             const pedido = await firebase.db.collection('ordenes').add(pedidoObj);
@@ -68,6 +68,8 @@ export default function ResumenPedido() {
                         } catch (error) {
                             console.log(error);
                         }
+
+
 
                     }
                 },
